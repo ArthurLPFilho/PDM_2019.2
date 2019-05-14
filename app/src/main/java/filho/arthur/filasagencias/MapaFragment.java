@@ -8,6 +8,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
@@ -35,6 +36,13 @@ public class MapaFragment extends SupportMapFragment implements OnMapReadyCallba
                 MarkerOptions marcador = new MarkerOptions();
                 marcador.position(coordenada);
                 marcador.title(agencia.getNome());
+                if (agencia.getNota() > 1 && agencia.getNota() <= 4) {
+                    marcador.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                }else if (agencia.getNota() > 4 && agencia.getNota() < 8 ){
+                    marcador.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                }else if (agencia.getNota() >= 8 && agencia.getNota() <= 10) {
+                    marcador.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                }
                 marcador.snippet(String.valueOf(agencia.getNota()));
                 googleMap.addMarker(marcador);
             }

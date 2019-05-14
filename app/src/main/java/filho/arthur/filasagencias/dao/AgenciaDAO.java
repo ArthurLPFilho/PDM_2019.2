@@ -37,6 +37,7 @@ public class AgenciaDAO extends SQLiteOpenHelper {
         dados.put("endereco", agencia.getEndereco());
         dados.put("horario", agencia.getHorario());
         dados.put("nota", agencia.getNota());
+        //dados.put("qtde", agencia.getQtde());
 
         db.insert("Agencias", null, dados);
     }
@@ -53,6 +54,7 @@ public class AgenciaDAO extends SQLiteOpenHelper {
             agencia.setEndereco(c.getString(c.getColumnIndex("endereco")));
             agencia.setHorario(c.getString(c.getColumnIndex("horario")));
             agencia.setNota(c.getDouble(c.getColumnIndex("nota")));
+            //agencia.setQtde(c.getInt(c.getColumnIndex( "qtde" )));
             agencias.add(agencia);
         }
         c.close();

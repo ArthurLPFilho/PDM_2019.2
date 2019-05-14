@@ -6,6 +6,7 @@ public class Agencia {
     private String endereco;
     private String horario;
     private Double nota;
+    private Integer qtde;
 
     public String getNumero() {
         return numero;
@@ -46,6 +47,14 @@ public class Agencia {
     public void setNota(Double nota) {
         this.nota = nota;
     }
+
+    /*public void setQtde(Integer qtde){
+        this.qtde = qtde;
+    }
+
+    public Integer getQtde() {
+        return qtde;
+    }*/
 
     @Override
     public String toString() {
