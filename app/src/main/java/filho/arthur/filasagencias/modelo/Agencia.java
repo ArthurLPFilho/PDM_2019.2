@@ -1,12 +1,23 @@
 package filho.arthur.filasagencias.modelo;
 
-public class Agencia {
+import java.io.Serializable;
+
+public class Agencia implements Serializable {
+    private Long id;
     private String numero;
     private String nome;
     private String endereco;
     private String horario;
     private Double nota;
-    private Integer qtde;
+    private Double qtde;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNumero() {
         return numero;
@@ -40,6 +51,14 @@ public class Agencia {
         this.horario = horario;
     }
 
+    public Double getQtde() {
+        return qtde;
+    }
+
+    public void setQtde(Double qtde) {
+        this.qtde = qtde;
+    }
+
     public Double getNota() {
         return nota;
     }
@@ -48,16 +67,9 @@ public class Agencia {
         this.nota = nota;
     }
 
-    /*public void setQtde(Integer qtde){
-        this.qtde = qtde;
-    }
-
-    public Integer getQtde() {
-        return qtde;
-    }*/
 
     @Override
     public String toString() {
-        return getNumero() + " - " + getNome() + " - " + getEndereco() + " - " + getHorario() + " - " + getNota();
+        return getNumero() + " - " + getNome() + " - " + getEndereco() + " - " + getHorario() + " - " + getNota() + " - " + getQtde();
     }
 }

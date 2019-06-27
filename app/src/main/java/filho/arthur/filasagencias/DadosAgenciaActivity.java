@@ -22,6 +22,11 @@ public class DadosAgenciaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados_agencia);
         helper = new FormularioHelper(this);
+        Intent intent = getIntent();
+        Agencia agencia = (Agencia) intent.getSerializableExtra( "agencia" );
+        if (agencia != null){
+            helper.preencheFormulario(agencia);
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -35,7 +40,11 @@ public class DadosAgenciaActivity extends AppCompatActivity {
             case R.id.menu_formulario_ok:
                 Agencia agencia = helper.pegaAgencia();
                 AgenciaDAO dao = new AgenciaDAO(this, 1);
-                dao.insere(agencia);
+                if(agencia.getId() != null){
+                    dao.altera(agencia);
+                }else {
+                    dao.insere( agencia );
+                }
                 dao.close();
                 Toast.makeText(DadosAgenciaActivity.this, "Avaliação da agência " + agencia.getNome() + " Salva!", Toast.LENGTH_SHORT).show();
                 finish();

@@ -1,8 +1,10 @@
 package filho.arthur.filasagencias;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.view.View;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -36,13 +38,26 @@ public class MapaFragment extends SupportMapFragment implements OnMapReadyCallba
                 MarkerOptions marcador = new MarkerOptions();
                 marcador.position(coordenada);
                 marcador.title(agencia.getNome());
-                if (agencia.getNota() > 1 && agencia.getNota() <= 4) {
+                //Forma anterior considerando apenas a ultima avaliacao
+
+                if (agencia.getNota() > 0 && agencia.getNota() <= 4) {
                     marcador.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                 }else if (agencia.getNota() > 4 && agencia.getNota() < 8 ){
                     marcador.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-                }else if (agencia.getNota() >= 8 && agencia.getNota() <= 10) {
+                }else if (agencia.getNota() >= 8) {
                     marcador.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                 }
+
+                //Considerando agora a media ponderada aritmetica para definir a cor dos pinos
+                /*if (agencia.getNota() / agencia.getQtde() > 0 && agencia.getNota() / agencia.getQtde() <= 4) {
+                    marcador.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                }else if (agencia.getNota() / agencia.getQtde() > 4 && agencia.getNota() / agencia.getQtde() < 8 ){
+                    marcador.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                }else if (agencia.getNota() / agencia.getQtde() >= 8) {
+                    marcador.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                }*/
+                //Fim da nova forma de calculo
+
                 marcador.snippet(String.valueOf(agencia.getNota()));
                 googleMap.addMarker(marcador);
             }
